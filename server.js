@@ -10,7 +10,7 @@ import cors from 'cors'
 const app = express()  
  
 // const port = process.env.PORT || '8000'
-// const DATABASE_URL = process.env.DATABASE_URL || "mongodb+srv://rohitnamdeo:rohitnamdeo123@cluster0.vkr7r.mongodb.net/consoft";
+// const DATABASE_URL = process.env.DATABASE_URL || "mongodb+srv://ecommerce:PL6o2XQKFKClsqHz@cluster0.zv2gr9b.mongodb.net/ecommerce";
 const port = PORT;
 
 // Database Connection
