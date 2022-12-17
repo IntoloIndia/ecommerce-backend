@@ -1,36 +1,49 @@
 import express from "express";
+import DesignationController from "../controllers/DesignationController.js";
 const router = express.Router();
 
 import {
-    WaterLevelController,
-    WaterSettingController,
-    UserController,
-} from '../controllers/index.js';
+  TeamController,
+  UserController,
+  AdminController,
+  BussinessController,
+  ProductKeyController,
+  PaymentController
+} from "../controllers/index.js";
 
-// user
-router.post('/user-register', UserController.userRegister);
 
-///water level
-router.get('/led-status/:unique_id', WaterLevelController.getLedStatus);
-router.put('/led-status/:unique_id', WaterLevelController.updateLedStatus);
+//admin
+router.post('/verify-product-key', ProductKeyController.verifyProductKey);
+router.post("/user-register", UserController.userRegister);
+router.post("/admin-register", AdminController.adminRegister);
 
-router.get('/sump-status/:unique_id', WaterLevelController.getSumpStatus);
-router.put('/sump-status/:unique_id', WaterLevelController.updateSumpStatus);
+//team 
+router.post("/team-register", TeamController.teamRegister);
+router.put('/team-update/:id',TeamController.updateTeamDetails);
+router.post('/team-login',TeamController.loginTeamMember);
+router.delete('/delete-team-member/:id', TeamController.destroy);
+router.delete('/logout-team-member', TeamController.logout);
 
-router.get('/water-level/:unique_id', WaterLevelController.getWaterLevel);
-router.put('/water-level/:unique_id', WaterLevelController.updateWaterLevel);
+//user/client
+router.post('/loginUser',UserController.loginUser);
+router.post('/logout-user',UserController.logout);
+router.post('/register-bussiness',BussinessController.store);
 
-router.get('/water-level-image/:unique_id', WaterLevelController.getWaterLevelImage);
-router.post('/water-level-image/:unique_id', WaterLevelController.saveWaterLevelImage);
+//designation
+router.post('/designation',DesignationController.store);
+router.get('/designation',DesignationController.index);
+router.put('/designation-update/:id',DesignationController.updateDesignation);
+router.delete('/designation/:id',DesignationController.destroy);
 
-router.get('/water-level-setting/:unique_id', WaterSettingController.getWaterSetting);
-router.put('/water-level-setting/:unique_id', WaterSettingController.setWaterSetting);
+//payment
+router.post('/payment', PaymentController.store);
+router.post('/payment-verify',PaymentController.paymentVerify);
 
-// router.get('/pump-notification-setting/:unique_id', WaterSettingController.getWaterSetting);
-router.put('/motor-notification-setting/:unique_id', WaterSettingController.setMotorNotificationSetting);
+router.post('/bussiness-login', BussinessController.bussinessLogin);
+// router.get('/company', [auth, admin], BussinessController.index);
+// router.post('/bussiness', BussinessController.store);
+router.post('/bussiness-logout', BussinessController.bussinessLogout);
 
-router.put('/tank-height-setting/:unique_id', WaterSettingController.tankHeightSetting);
-router.put('/water-source-setting/:unique_id', WaterSettingController.waterSourceSetting);
 
 
 export default router;
